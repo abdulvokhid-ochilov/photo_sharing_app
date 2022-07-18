@@ -11,8 +11,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = ({ clientId, credential }) => {
-    localStorage.setItem("user", JSON.stringify(credential));
-
     const { name, picture } = jwt_decode(credential);
     const doc = {
       _id: clientId,
@@ -20,6 +18,8 @@ const Login = () => {
       userName: name,
       image: picture,
     };
+
+    localStorage.setItem("user", JSON.stringify(doc));
 
     console.log(doc);
     client.createIfNotExists(doc).then(() => {
