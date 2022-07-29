@@ -21,7 +21,6 @@ const Login = () => {
 
     localStorage.setItem("user", JSON.stringify(doc));
 
-    console.log(doc);
     client.createIfNotExists(doc).then(() => {
       navigate("/", { replace: true });
     });
