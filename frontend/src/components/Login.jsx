@@ -10,10 +10,11 @@ import { client } from "../client";
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = ({ clientId, credential }) => {
-    const { name, picture } = jwt_decode(credential);
+  const handleLogin = ({ credential }) => {
+    const { name, picture, sub } = jwt_decode(credential);
+
     const doc = {
-      _id: clientId,
+      _id: sub,
       _type: "user",
       userName: name,
       image: picture,
@@ -44,7 +45,9 @@ const Login = () => {
 
           <div className="shadow-2xl">
             <GoogleLogin
-              onSuccess={(response) => handleLogin(response)}
+              onSuccess={(response) => {
+                handleLogin(response);
+              }}
               onError={() => console.log("error")}
             />
           </div>
