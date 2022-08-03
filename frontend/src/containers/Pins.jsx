@@ -21,26 +21,16 @@ const Pins = ({ user }) => {
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route
             path="/pin-detail/:pinId"
-            element={
-              // <Protected user={user}>
-              <PinDetails user={user && user} />
-              // </Protected>
-            }
+            element={<PinDetails user={user && user} />}
           />
           <Route
             path="/create-pin"
-            element={
-              // <Protected user={user}>
-              <CreatePin user={user && user} />
-              // </Protected>
-            }
+            element={<CreatePin user={user && user} />}
           />
           <Route
             path="/search"
             element={
-              // <Protected user={user}>
               <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-              // </Protected>
             }
           />
         </Routes>
